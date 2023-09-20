@@ -13,8 +13,17 @@ internal class Game
 
     private void Play()
     {
-        map.GetType();
-        throw new NotImplementedException();
+        //DrawMap
+
+        //GetCommand
+
+        //Act
+
+        //DrawMap
+
+        //EnemyAction
+
+        //DrawMap
     }
 
     private void Initialize()
