@@ -77,14 +77,16 @@ internal class Game
                 IDrawable drawable = cell;
                 ArgumentNullException.ThrowIfNull(drawable, nameof(drawable));
 
-                foreach (var creature in map.Creatures)
-                {
-                    if (creature.Cell == drawable)
-                    {
-                        drawable = creature;
-                        break;
-                    }
-                }
+                drawable = map.Creatures.CreatureAtExtension(cell);
+
+                //foreach (var creature in map.Creatures)
+                //{
+                //    if (creature.Cell == drawable)
+                //    {
+                //        drawable = creature;
+                //        break;
+                //    }
+                //}
                 Console.ForegroundColor = drawable.Color;
                 Console.Write(drawable.Symbol);
             }
