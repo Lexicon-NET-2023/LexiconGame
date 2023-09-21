@@ -7,6 +7,8 @@ internal class Map
     public int Width { get; }
     public int Height { get; }
 
+    public List<Creature> Creatures { get; } = new List<Creature>();
+
     public Map(int width, int height)
     {
         this.Width = width;
@@ -27,15 +29,6 @@ internal class Map
     [return: MaybeNull]
     internal Cell GetCell(int y, int x)
     {
-        try
-        {
-            return cells[y, x];
-        }
-        catch (Exception ex)
-        {
-
-            Debug.WriteLine(ex.Message);
-            return null;
-        }
+       return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
     }
 }
