@@ -2,12 +2,11 @@
 {
     public string Symbol => ". ";
     public ConsoleColor Color { get; }
-    public int X { get; }
-    public int Y { get; }
-    public Cell(int y, int x)
+    public Position Position { get; set; }
+
+    public Cell(Position position)
     {
         Color = ConsoleColor.Red;
-        Y = y;
-        X = x;
+        Position = position;
     }
 }
