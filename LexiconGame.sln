@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexiconGame.ConsoleGame", "LexiconGame.ConsoleGame\LexiconGame.ConsoleGame.csproj", "{10B48D09-800E-4CF8-9C08-B029BC01BD50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LexiconGame.ConsoleGame", "LexiconGame.ConsoleGame\LexiconGame.ConsoleGame.csproj", "{10B48D09-800E-4CF8-9C08-B029BC01BD50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexiconGame.LimitedList", "LexiconGame.LimitedList\LexiconGame.LimitedList.csproj", "{619A0F53-3B4F-4739-96FE-4FBADB50E667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{10B48D09-800E-4CF8-9C08-B029BC01BD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B48D09-800E-4CF8-9C08-B029BC01BD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10B48D09-800E-4CF8-9C08-B029BC01BD50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619A0F53-3B4F-4739-96FE-4FBADB50E667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619A0F53-3B4F-4739-96FE-4FBADB50E667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619A0F53-3B4F-4739-96FE-4FBADB50E667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619A0F53-3B4F-4739-96FE-4FBADB50E667}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
