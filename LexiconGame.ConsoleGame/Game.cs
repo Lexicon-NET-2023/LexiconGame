@@ -78,5 +78,9 @@ internal class Game
         var heroCell = map.GetCell(0, 0)!;
         hero = new Hero(heroCell);
         map.Creatures.Add(hero);
+
+        map.GetCell(2, 4)?.Items.Add(Item.Coin());
+        map.GetCell(3, 7)?.Items.Add(Item.Stone());
+        map.GetCell(3, 7)?.Items.Add(Item.Coin());
     }
 }

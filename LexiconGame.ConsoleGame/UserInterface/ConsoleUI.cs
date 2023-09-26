@@ -28,7 +28,7 @@ namespace LexiconGame.ConsoleGame.UserInterface
                     IDrawable drawable = cell;
                     ArgumentNullException.ThrowIfNull(drawable, nameof(drawable));
 
-                    drawable = map.Creatures.CreatureAtExtension(cell);
+                    drawable = map.Creatures.CreatureAtExtension2(cell) ?? cell.Items.FirstOrDefault() as IDrawable ?? cell;
                    
                     Console.ForegroundColor = drawable.Color;
                     Console.Write(drawable.Symbol);
