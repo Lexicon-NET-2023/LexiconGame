@@ -8,6 +8,18 @@ namespace LexiconGame.ConsoleGame.UserInterface
 {
     internal class ConsoleUI
     {
+        private static MessageLog<string> messageLog = new(6);
+
+        internal static void AddMessage(string message) => messageLog.Add(message);
+        //{
+        //    messageLog.Add(message);
+        //}
+
+        public static void PrintLog()
+        {
+            messageLog.Print(m => Console.WriteLine(m));
+            //messageLog.Print(Console.WriteLine);
+        }
 
         internal static void Clear()
         {
@@ -25,8 +37,8 @@ namespace LexiconGame.ConsoleGame.UserInterface
                 for (int x = 0; x < map.Width; x++)
                 {
                     Cell? cell = map.GetCell(y, x);
+                    ArgumentNullException.ThrowIfNull(cell, nameof(cell));
                     IDrawable drawable = cell;
-                    ArgumentNullException.ThrowIfNull(drawable, nameof(drawable));
 
                     drawable = map.Creatures.CreatureAtExtension2(cell) ?? cell.Items.FirstOrDefault() as IDrawable ?? cell;
                    

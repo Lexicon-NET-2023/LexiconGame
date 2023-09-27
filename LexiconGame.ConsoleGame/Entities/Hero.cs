@@ -8,6 +8,6 @@ internal class Hero : Creature
         Color = ConsoleColor.White;
 
         //ToDo read from config
-        BackPack = new LimitedList<Item>(3);
+        BackPack = new LimitedList<Item>(2);
     }
 }
