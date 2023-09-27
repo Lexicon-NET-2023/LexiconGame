@@ -49,5 +49,13 @@ namespace LexiconGame.ConsoleGame.UserInterface
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        internal static void PrintStats(string stats)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(stats);
+            Console.ForegroundColor = ConsoleColor.White;
+            
+        }
     }
 }

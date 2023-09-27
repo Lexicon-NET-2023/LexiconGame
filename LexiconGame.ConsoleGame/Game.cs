@@ -92,6 +92,7 @@ internal class Game
     {
         ConsoleUI.Clear();
         ConsoleUI.Draw(map);
+        ConsoleUI.PrintStats($"Health: {hero.Health}");
         ConsoleUI.PrintLog();
     }
 
