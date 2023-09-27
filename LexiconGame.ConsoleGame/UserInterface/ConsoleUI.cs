@@ -17,7 +17,7 @@ namespace LexiconGame.ConsoleGame.UserInterface
 
         public static void PrintLog()
         {
-            messageLog.Print(m => Console.WriteLine(m));
+            messageLog.Print(m => Console.WriteLine(m + new string(' ', Console.WindowWidth - m.Length)));
             //messageLog.Print(Console.WriteLine);
         }
 

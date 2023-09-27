@@ -13,7 +13,16 @@ namespace LexiconGame.LimitedList
         protected List<T> list;
 
         public int Count => list.Count;
-        public bool IsFull => capacity <= Count;        
+        public bool IsFull => capacity <= Count;  
+        
+        public T this[int index] => list[index];
+        //{  
+        //    get 
+        //    { 
+        //        return list[index]; 
+        //    } 
+        //    set => list[index] = value;
+        //}
 
         public LimitedList(int capacity)
         {
