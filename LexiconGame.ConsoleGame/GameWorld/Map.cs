@@ -39,7 +39,9 @@ internal class Map
 
     internal void Place(Creature creature)
     {
-        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) != null) return;
-        Creatures.Add(creature);
+        if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null)
+        {
+               Creatures.Add(creature);
+        }
     }
 }
