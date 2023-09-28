@@ -70,7 +70,21 @@ internal class Game
             actionMeny[keyPressed]?.Invoke();
 
         }
-    
+
+    private void Drop()
+    {
+        var item = hero.BackPack.FirstOrDefault();
+
+        if (item != null && hero.BackPack.Remove(item))
+        {
+            hero.Cell.Items.Add(item);
+            ConsoleUI.AddMessage($"Hero dropped the {item}");
+        }
+        else
+        {
+            ConsoleUI.AddMessage("Backpack is empty");
+        }
+    }
 
     private void Inventory()
     {
@@ -105,7 +119,14 @@ internal class Game
     {
         Position newPosition = hero.Cell.Position + movement;
         Cell? newCell = map.GetCell(newPosition);
-        if (newCell is not null) hero.Cell = newCell; 
+        if (newCell is not null)
+        {
+            hero.Cell = newCell;
+            if (newCell.Items.Any())
+                ConsoleUI.AddMessage($"You see {string.Join(", ", newCell.Items)}");
+
+        }
+            
     }
 
     private void DrawMap()
@@ -122,6 +143,7 @@ internal class Game
         {
             { ConsoleKey.P, PickUp },
             { ConsoleKey.I, Inventory },
+            { ConsoleKey.D, Drop }
         };
 
         var r = new Random();
@@ -132,7 +154,9 @@ internal class Game
         hero = new Hero(heroCell);
         map.Creatures.Add(hero);
 
-        RCell().Items.Add(Item.Coin());
+        //map.GetCell(2,2)!.Items.Add(Item.Coin());
+        //map.GetCell(2,2)!.Items.Add(Item.Coin());
+        //map.GetCell(2,2)!.Items.Add(Item.Coin());
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Coin());
         RCell().Items.Add(Item.Stone());
@@ -157,4 +181,6 @@ internal class Game
             return cell;
         }
     }
+
+   
 }
