@@ -3,6 +3,7 @@ using System.Data;
 
 internal class Game
 {
+    private Dictionary<ConsoleKey, Action> actionMeny;
     private Map map = null!;
     private Hero hero = null!;
 
@@ -63,11 +64,7 @@ internal class Game
                 //        break;
         }
 
-        var actionMeny = new Dictionary<ConsoleKey, Action>
-        {
-            { ConsoleKey.P, PickUp },
-            { ConsoleKey.I, Inventory },
-        };
+      
 
         if(actionMeny.ContainsKey(keyPressed))
             actionMeny[keyPressed]?.Invoke();
@@ -77,6 +74,7 @@ internal class Game
 
     private void Inventory()
     {
+        ConsoleUI.AddMessage(hero.BackPack.Count > 0 ? "Inventory:" : "No items");
         for (int i = 0; i < hero.BackPack.Count; i++) 
         {
             ConsoleUI.AddMessage($"{i + 1}: {hero.BackPack[i]}");
@@ -120,6 +118,12 @@ internal class Game
 
     private void Initialize()
     {
+        actionMeny = new Dictionary<ConsoleKey, Action>
+        {
+            { ConsoleKey.P, PickUp },
+            { ConsoleKey.I, Inventory },
+        };
+
         //ToDo: Read from config
         map = new Map(width: 10, height: 10);
         var heroCell = map.GetCell(0, 0)!;
