@@ -133,5 +133,9 @@ internal class Game
         map.GetCell(2, 4)?.Items.Add(Item.Coin());
         map.GetCell(3, 7)?.Items.Add(Item.Stone());
         map.GetCell(3, 7)?.Items.Add(Item.Coin());
+
+        map.Place(new Orc(map.GetCell(0, 5)!));
+        map.Place(new Orc(map.GetCell(0, 5)!));
+        map.Place(new Troll(map.GetCell(3, 6)!));
     }
 }
