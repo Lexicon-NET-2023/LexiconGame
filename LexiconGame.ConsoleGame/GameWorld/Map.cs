@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using LexiconGame.ConsoleGame.Entities;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 internal class Map
@@ -43,5 +44,10 @@ internal class Map
         {
                Creatures.Add(creature);
         }
+    }
+
+    internal Creature? CreatureAt(Cell cell)
+    {
+        return Creatures.FirstOrDefault(c => c.Cell == cell);
     }
 }

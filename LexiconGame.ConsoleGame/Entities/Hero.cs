@@ -9,5 +9,6 @@ internal class Hero : Creature
 
         //ToDo read from config
         BackPack = new LimitedList<Item>(2);
+        Damage = 60;
     }
 }

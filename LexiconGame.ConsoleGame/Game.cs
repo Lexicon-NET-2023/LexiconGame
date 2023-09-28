@@ -1,5 +1,6 @@
 ﻿using LexiconGame.ConsoleGame.GameWorld;
 using System.Data;
+using System.Diagnostics;
 
 internal class Game
 {
@@ -119,6 +120,15 @@ internal class Game
     {
         Position newPosition = hero.Cell.Position + movement;
         Cell? newCell = map.GetCell(newPosition);
+
+        Creature? opponent = map.CreatureAt(newCell!);
+        if (opponent is not null)
+        {
+            hero.Attack(opponent);
+            opponent.Attack(hero);
+        }
+
+
         if (newCell is not null)
         {
             hero.Cell = newCell;
@@ -168,6 +178,11 @@ internal class Game
         map.Place(new Goblin(RCell()));
         map.Place(new Orc(RCell()));
 
+        map.Creatures.ForEach(c =>
+        {
+            c.AddToLog = ConsoleUI.AddMessage;
+           // c.AddToLog += m => Debug.WriteLine(m);
+        });
 
         Cell RCell()
         {
