@@ -5,15 +5,16 @@ using System.Diagnostics;
 internal class Game
 {
     private Dictionary<ConsoleKey, Action> actionMeny = null!;
-    private Map map = null!;
+    private IMap map;
     private Hero hero = null!;
     private bool gameInProgress;
     private IUI ui;
 
 
-    public Game(IUI ui)
+    public Game(IUI ui, IMap map)
     {
         this.ui = ui;
+        this.map = map;
     }
 
     internal void Run()
@@ -176,7 +177,7 @@ internal class Game
         var r = new Random();
 
         //ToDo: Read from config
-        map = new Map(width: 10, height: 10);
+        //map = new Map(width: 10, height: 10);
         var heroCell = map.GetCell(0, 0)!;
         hero = new Hero(heroCell);
         map.Creatures.Add(hero);

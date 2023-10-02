@@ -30,7 +30,7 @@ namespace LexiconGame.ConsoleGame.UserInterface
         public ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
 
 
-        public void Draw(Map map)
+        public void Draw(IMap map)
         {
             for (int y = 0; y < map.Height; y++)
             {

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-public class Map
+public class Map : IMap
 {
     private Cell[,] cells;
     public int Width { get; }
@@ -27,9 +27,9 @@ public class Map
     }
 
     [return: MaybeNull]
-    internal Cell GetCell(int y, int x)
+    public Cell GetCell(int y, int x)
     {
-       return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
+        return (x < 0 || x >= Width || y < 0 || y >= Height) ? null : cells[y, x];
     }
 
     public Cell? GetCell(Position newPosition)
@@ -41,7 +41,7 @@ public class Map
     {
         if (Creatures.FirstOrDefault(c => c.Cell == creature.Cell) == null)
         {
-               Creatures.Add(creature);
+            Creatures.Add(creature);
         }
     }
 
