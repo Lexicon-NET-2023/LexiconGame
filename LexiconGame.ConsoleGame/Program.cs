@@ -1,25 +1,21 @@
 ﻿
-//string someText = "Hej  på dig";
+using Microsoft.Extensions.Configuration;
 
-//foreach (var item in someText)
-//{
-//    Console.WriteLine(item);
-//}
+IConfiguration config = new ConfigurationBuilder()
+                                .SetBasePath(Environment.CurrentDirectory)
+                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                                .Build();
 
+//var ui = config.GetSection("game:ui").Value;
+//var x = config.GetSection("game:mapsettings:x").Value;
+//var y = config.GetSection("game:mapsettings:y").Value;
 
+//var mapSettings = config.GetSection("game:mapsettings").GetChildren();
 
-//var backpack = new LimitedList<string>(6);
-//backpack.Add("Hej");
+var width = config.GetMapSizeFor("x");
+var height = config.GetMapSizeFor("y");
 
-
-//foreach (var item in backpack)
-//{
-//    Console.WriteLine(item);
-//}
-
-
-
-var map = new Map(10, 10);
+var map = new Map(width, height);
 var game = new Game(new ConsoleUI(), map);
 game.Run();
 

@@ -15,7 +15,7 @@ public class Map : IMap
         this.Width = width;
         this.Height = height;
 
-        cells = new Cell[width, height];
+        cells = new Cell[height, width];
 
         for (int y = 0; y < height; y++)
         {

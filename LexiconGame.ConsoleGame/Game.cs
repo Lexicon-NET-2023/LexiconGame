@@ -210,7 +210,7 @@ internal class Game
             var width = r.Next(0, map.Width);
             var height = r.Next(0, map.Height);
 
-            var cell = map.GetCell(width, height);
+            var cell = map.GetCell(height, width);
 
             ArgumentNullException.ThrowIfNull(cell, nameof(cell));
 
