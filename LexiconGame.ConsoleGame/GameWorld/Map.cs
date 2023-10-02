@@ -11,10 +11,13 @@ public class Map : IMap
 
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(IConfiguration config)
+    public Map(IConfiguration config, IMapSettings mapSettings)
     {
-        var width = config.GetMapSizeFor("x");
-        var height = config.GetMapSizeFor("y");
+        //var width = config.GetMapSizeFor("x");
+        //var height = config.GetMapSizeFor("y");
+        
+        var width = mapSettings.X;
+        var height = mapSettings.Y;
 
         this.Width = width;
         this.Height = height;
