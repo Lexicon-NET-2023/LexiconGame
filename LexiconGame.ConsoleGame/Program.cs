@@ -1,4 +1,5 @@
 ﻿
+using LexiconGame.ConsoleGame.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +25,7 @@ var host = Host.CreateDefaultBuilder(args)
                    //services.AddSingleton<ILimitedList<Item>>(new LimitedList<Item>(3));
                    services.AddSingleton<IMapSettings>(config.GetSection("game:mapsettings").Get<MapSettings>()!);
                    services.Configure<MapSettings>(config.GetSection("game:mapsettings").Bind);
+                   services.AddSingleton<IMapService, MapService>();
                })
                .UseConsoleLifetime()
                .Build();
