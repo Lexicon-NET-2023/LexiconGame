@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexiconGame.ConsoleGame.Entities
 {
-    internal class Creature : IDrawable
+    public class Creature : IDrawable
     {
         private Cell cell = default!;
         private int health;

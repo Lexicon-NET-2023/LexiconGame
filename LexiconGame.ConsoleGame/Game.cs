@@ -4,10 +4,11 @@ using System.Diagnostics;
 
 internal class Game
 {
-    private Dictionary<ConsoleKey, Action> actionMeny;
+    private Dictionary<ConsoleKey, Action> actionMeny = null!;
     private Map map = null!;
     private Hero hero = null!;
     private bool gameInProgress;
+    private ConsoleUI ui = new ConsoleUI();
 
     internal void Run()
     {
@@ -42,7 +43,7 @@ internal class Game
 
     private void GetCommand()
     {
-        var keyPressed = ConsoleUI.GetKey();
+        var keyPressed = ui.GetKey();
 
         switch (keyPressed)
         {
@@ -80,20 +81,20 @@ internal class Game
         if (item != null && hero.BackPack.Remove(item))
         {
             hero.Cell.Items.Add(item);
-            ConsoleUI.AddMessage($"Hero dropped the {item}");
+            ui.AddMessage($"Hero dropped the {item}");
         }
         else
         {
-            ConsoleUI.AddMessage("Backpack is empty");
+            ui.AddMessage("Backpack is empty");
         }
     }
 
     private void Inventory()
     {
-        ConsoleUI.AddMessage(hero.BackPack.Count > 0 ? "Inventory:" : "No items");
+        ui.AddMessage(hero.BackPack.Count > 0 ? "Inventory:" : "No items");
         for (int i = 0; i < hero.BackPack.Count; i++) 
         {
-            ConsoleUI.AddMessage($"{i + 1}: {hero.BackPack[i]}");
+            ui.AddMessage($"{i + 1}: {hero.BackPack[i]}");
         }
     }
 
@@ -101,7 +102,7 @@ internal class Game
     {
         if(hero.BackPack.IsFull)
         {
-            ConsoleUI.AddMessage("Backpack is full");
+            ui.AddMessage("Backpack is full");
             return;
         }
 
@@ -113,13 +114,13 @@ internal class Game
         {
             healthPotion.Use(hero, c => c.Health += 30);
             hero.Cell.Items.Remove(item);
-            ConsoleUI.AddMessage($"Hero use the {item}");
+            ui.AddMessage($"Hero use the {item}");
             return;
         }
 
         if(hero.BackPack.Add(item))
         {
-            ConsoleUI.AddMessage($"Hero pick up {item}");
+            ui.AddMessage($"Hero pick up {item}");
             items.Remove(item);
         }
         
@@ -143,7 +144,7 @@ internal class Game
         {
             hero.Cell = newCell;
             if (newCell.Items.Any())
-                ConsoleUI.AddMessage($"You see {string.Join(", ", newCell.Items)}");
+                ui.AddMessage($"You see {string.Join(", ", newCell.Items)}");
 
         }
             
@@ -151,10 +152,10 @@ internal class Game
 
     private void DrawMap()
     {
-        ConsoleUI.Clear();
-        ConsoleUI.Draw(map);
-        ConsoleUI.PrintStats($"Health: {hero.Health}, Enemys: {(map.Creatures.Where(c => !c.IsDead).Count() - 1)}   ");
-        ConsoleUI.PrintLog();
+        ui.Clear();
+        ui.Draw(map);
+        ui.PrintStats($"Health: {hero.Health}, Enemys: {(map.Creatures.Where(c => !c.IsDead).Count() - 1)}   ");
+        ui.PrintLog();
     }
 
     private void Initialize()
@@ -193,7 +194,7 @@ internal class Game
 
         map.Creatures.ForEach(c =>
         {
-            c.AddToLog = ConsoleUI.AddMessage;
+            c.AddToLog = ui.AddMessage;
            // c.AddToLog += m => Debug.WriteLine(m);
         });
 
