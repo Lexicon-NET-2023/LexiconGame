@@ -20,7 +20,7 @@
 
 
 
-var game = new Game();
+var game = new Game(new ConsoleUI());
 game.Run();
 
 Console.WriteLine("Game Over");

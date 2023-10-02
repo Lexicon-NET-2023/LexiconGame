@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexiconGame.ConsoleGame.UserInterface
 {
-    public class ConsoleUI
+    public class ConsoleUI : IUI
     {
         private static MessageLog<string> messageLog = new(6);
 
@@ -21,16 +21,16 @@ namespace LexiconGame.ConsoleGame.UserInterface
             //messageLog.Print(Console.WriteLine);
         }
 
-        public  void Clear()
+        public void Clear()
         {
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0);
         }
 
-        public  ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
+        public ConsoleKey GetKey() => Console.ReadKey(intercept: true).Key;
 
 
-        public  void Draw(Map map)
+        public void Draw(Map map)
         {
             for (int y = 0; y < map.Height; y++)
             {
@@ -41,7 +41,7 @@ namespace LexiconGame.ConsoleGame.UserInterface
                     IDrawable drawable = cell;
 
                     drawable = map.Creatures.CreatureAtExtension2(cell) ?? cell.Items.FirstOrDefault() as IDrawable ?? cell;
-                   
+
                     Console.ForegroundColor = drawable.Color;
                     Console.Write(drawable.Symbol);
                 }
@@ -55,7 +55,7 @@ namespace LexiconGame.ConsoleGame.UserInterface
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(stats);
             Console.ForegroundColor = ConsoleColor.White;
-            
+
         }
     }
 }
