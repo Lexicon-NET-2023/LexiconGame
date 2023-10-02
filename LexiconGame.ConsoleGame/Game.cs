@@ -12,11 +12,11 @@ internal class Game
     private IUI ui;
     private readonly IConfiguration config;
 
-    public Game(IUI ui, IConfiguration configuration)
+    public Game(IUI ui, IConfiguration configuration, IMap map)
     {
         this.ui = ui;
         this.config = configuration;
-        //this.map = map;
+        this.map = map;
     }
 
     internal void Run()
@@ -162,7 +162,7 @@ internal class Game
     private void DrawMap()
     {
         ui.Clear();
-        ui.Draw(map);
+        ui.Draw();
         ui.PrintStats($"Health: {hero.Health}, Enemys: {(map.Creatures.Where(c => !c.IsDead).Count() - 1)}   ");
         ui.PrintLog();
     }
@@ -178,10 +178,9 @@ internal class Game
 
         var r = new Random();
 
-        var width = config.GetMapSizeFor("x");
-        var height = config.GetMapSizeFor("y");
+        
 
-        map = new Map(width, height);
+        //map = new Map(width, height);
         //map = new Map(width: 10, height: 10);
         var heroCell = map.GetCell(0, 0)!;
         hero = new Hero(heroCell);

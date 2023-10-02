@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace LexiconGame.LimitedList
 {
-    public class LimitedList<T> : IEnumerable<T>
+    public class LimitedList<T> :  ILimitedList<T>
     {
         private readonly int capacity;
         protected List<T> list;
 
         public int Count => list.Count;
-        public bool IsFull => capacity <= Count;  
-        
+        public bool IsFull => capacity <= Count;
+
         public T this[int index] => list[index];
         //{  
         //    get 
@@ -34,20 +34,20 @@ namespace LexiconGame.LimitedList
         {
             ArgumentNullException.ThrowIfNull(item, nameof(item));
 
-            if(IsFull) return false;
+            if (IsFull) return false;
             list.Add(item); return true;
         }
 
         public void Print(Action<T> action)
         {
-           // list.ForEach(action);
-           // list.ForEach(x => action(x));
+            // list.ForEach(action);
+            // list.ForEach(x => action(x));
             list.ForEach(x => action?.Invoke(x));
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            foreach(T item in list)
+            foreach (T item in list)
             {
 
                 //Do somethin if needed?
@@ -59,7 +59,7 @@ namespace LexiconGame.LimitedList
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public bool Remove(T item) => list.Remove(item);
-       
+
         //{
         //    throw new NotImplementedException();
         //}
