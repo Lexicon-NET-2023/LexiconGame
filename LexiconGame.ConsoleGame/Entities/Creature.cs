@@ -8,8 +8,9 @@ namespace LexiconGame.ConsoleGame.Entities
 {
     internal class Creature : IDrawable
     {
-        private Cell cell;
+        private Cell cell = default!;
         private int health;
+        private ConsoleColor color;
         public string Name => GetType().Name;
         public Cell Cell 
         {
@@ -29,15 +30,20 @@ namespace LexiconGame.ConsoleGame.Entities
         public int MaxHealth { get;  }
         public bool IsDead => health <= 0;
         public int Damage { get; protected set; } = 50;
-        public ConsoleColor Color { get; protected set; } = ConsoleColor.Green;
+        public ConsoleColor Color 
+        { 
+            get => IsDead ? ConsoleColor.Gray : color;
+            protected set => color = value;
+        }
         public Action<string> AddToLog { get; set; } = default!;
 
         public Creature(Cell cell, string symbol, int maxHealth)
         {
-            Cell = cell;
+            Cell = cell ?? throw new ArgumentNullException(nameof(cell));
             Symbol = symbol;
             MaxHealth = maxHealth;
             Health = maxHealth;
+            color = ConsoleColor.Green;
         }
 
         public void Attack(Creature target)
@@ -45,6 +51,8 @@ namespace LexiconGame.ConsoleGame.Entities
             if(target.IsDead || this.IsDead) return;
 
             var attacker = this.Name;
+
+            target.Health -= Damage;
 
             AddToLog?.Invoke($"The {attacker} attacks the {target.Name} for {this.Damage}");
 
