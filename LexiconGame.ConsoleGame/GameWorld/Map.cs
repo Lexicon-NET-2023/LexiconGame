@@ -26,7 +26,6 @@ internal class Map
         }
     }
 
-    //ToDo: Do better
     [return: MaybeNull]
     internal Cell GetCell(int y, int x)
     {
