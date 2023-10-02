@@ -12,11 +12,8 @@ IConfiguration config = new ConfigurationBuilder()
 
 //var mapSettings = config.GetSection("game:mapsettings").GetChildren();
 
-var width = config.GetMapSizeFor("x");
-var height = config.GetMapSizeFor("y");
 
-var map = new Map(width, height);
-var game = new Game(new ConsoleUI(), map);
+var game = new Game(new ConsoleUI(), config);
 game.Run();
 
 Console.WriteLine("Game Over");

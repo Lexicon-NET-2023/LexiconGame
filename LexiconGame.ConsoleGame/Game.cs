@@ -1,4 +1,5 @@
 ﻿using LexiconGame.ConsoleGame.GameWorld;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Diagnostics;
 
@@ -9,12 +10,13 @@ internal class Game
     private Hero hero = null!;
     private bool gameInProgress;
     private IUI ui;
+    private readonly IConfiguration config;
 
-
-    public Game(IUI ui, IMap map)
+    public Game(IUI ui, IConfiguration configuration)
     {
         this.ui = ui;
-        this.map = map;
+        this.config = configuration;
+        //this.map = map;
     }
 
     internal void Run()
@@ -176,7 +178,10 @@ internal class Game
 
         var r = new Random();
 
-        //ToDo: Read from config
+        var width = config.GetMapSizeFor("x");
+        var height = config.GetMapSizeFor("y");
+
+        map = new Map(width, height);
         //map = new Map(width: 10, height: 10);
         var heroCell = map.GetCell(0, 0)!;
         hero = new Hero(heroCell);
