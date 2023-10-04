@@ -13,10 +13,15 @@ public class Map : IMap
 
     public List<Creature> Creatures { get; } = new List<Creature>();
 
-    public Map(IConfiguration config, IMapSettings mapSettings, IOptions<MapSettings> options, IMapService mapService)
+    //public Map(IConfiguration config, IMapSettings mapSettings, IOptions<MapSettings> options, IMapService mapService)
+    //1.
+    // public Map(IMapService mapService)
+    
+    //2.
+    public Map(IConfiguration config)
     {
-        //var width = config.GetMapSizeFor("x");
-        //var height = config.GetMapSizeFor("y");
+        var width = config.GetMapSizeFor("x");
+        var height = config.GetMapSizeFor("y");
 
         //var width = mapSettings.X;
         //var height = mapSettings.Y;
@@ -24,7 +29,7 @@ public class Map : IMap
         //var width = options.Value.X;
         //var height = options.Value.Y;   
 
-        var (width, height) = mapService.GetMap();
+        // var (width, height) = mapService.GetMap();
 
         this.Width = width;
         this.Height = height;
