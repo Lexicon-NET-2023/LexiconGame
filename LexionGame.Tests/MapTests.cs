@@ -7,7 +7,7 @@ namespace LexionGame.Tests
 {
     public class MapTests
     {
-        //1.
+        //1. Service
         //[Fact]
         //public void Constructor_SetCorrectWidth()
         //{
@@ -23,17 +23,32 @@ namespace LexionGame.Tests
         //} 
         
 
-        //2.
+        //2. Interface
+        //[Fact]
+        //public void Constructor_SetCorrectWidth()
+        //{
+        //    const int expectedWidth = 10;
+
+        //    var iconfigMock = new Mock<IConfiguration>();
+        //    var getMapSizeMock = new Mock<IGetMapSize>();
+
+        //    getMapSizeMock.Setup(x => x.GetMapSizeFor(iconfigMock.Object, It.IsAny<string>())).Returns(expectedWidth);
+        //    TestExtensions.Implementation = getMapSizeMock.Object;
+
+        //    var map = new Map(iconfigMock.Object);
+
+        //    Assert.Equal(expectedWidth, map.Width);
+        //} 
+        
+        //3. Func
         [Fact]
         public void Constructor_SetCorrectWidth()
         {
             const int expectedWidth = 10;
 
             var iconfigMock = new Mock<IConfiguration>();
-            var getMapSizeMock = new Mock<IGetMapSize>();
 
-            getMapSizeMock.Setup(x => x.GetMapSizeFor(iconfigMock.Object, It.IsAny<string>())).Returns(expectedWidth);
-            TestExtensions.Implementation = getMapSizeMock.Object;
+            TestExtensions.Implementation = (iconfig, value) => expectedWidth;
 
             var map = new Map(iconfigMock.Object);
 
